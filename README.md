@@ -9,17 +9,18 @@ Helpers for lazy operations.
 ```csharp
 var syncLazy = new SyncLazy<string>(() => 
 {
-    return "sample string";
+    return "Sample string";
 });
 var value = syncLazy.Value;
 ```
 
-* AyncLazy usage
+* AsyncLazy usage
 ```csharp
 async Task<string> ValueFactory() => await Task.Run(() =>
 {
-    return "sample string";
+    return "Sample string: " + DateTime.Now.Ticks;
 });
 var asyncLazy = new SyncLazy<string>(ValueFactory);
-var value = asyncLazy.Value;
+var value1 = await asyncLazy.GetValueAsync();
+var value2 = await asyncLazy.GetValueAsync();
 ```
