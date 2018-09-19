@@ -17,18 +17,14 @@ namespace Agero.Core.Lazy
         private readonly bool? _isThreadSafe;
         private readonly LazyThreadSafetyMode? _mode;
 
-        /// <summary>
-        /// Constructor
-        /// </summary>
+        /// <summary>Initializes a new instance of the SyncLazy class.</summary>
         public SyncLazy()
         {
             _lazy = new Lazy<TValue>();
         }
 
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="isThreadSafe">Is Thread Safe</param>
+        /// <summary>Initializes a new instance of the SyncLazy class.</summary>
+        /// <param name="isThreadSafe">true to make this instance usable concurrently by multiple threads; false to make the instance usable by only one thread at a time.</param>
         public SyncLazy(bool isThreadSafe)
         {
             _isThreadSafe = isThreadSafe;
@@ -36,10 +32,8 @@ namespace Agero.Core.Lazy
             _lazy = new Lazy<TValue>(isThreadSafe);
         }
 
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="valueFactory">Value Factory</param>
+        /// <summary>Initializes a new instance of the SyncLazy class.</summary>        
+        /// <param name="valueFactory">The delegate that is invoked to produce the lazily initialized value when it is needed.</param>
         public SyncLazy(Func<TValue> valueFactory)
         {
             _valueFactory = valueFactory;
@@ -47,11 +41,9 @@ namespace Agero.Core.Lazy
             _lazy = new Lazy<TValue>(valueFactory);
         }
 
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="valueFactory">Value Factory</param>
-        /// <param name="isThreadSafe">is Thread Safe</param>
+        /// <summary>Initializes a new instance of the SyncLazy class.</summary>
+        /// <param name="valueFactory">The delegate that is invoked to produce the lazily initialized value when it is needed.</param>
+        /// <param name="isThreadSafe">true to make this instance usable concurrently by multiple threads; false to make this instance usable by only one thread at a time.</param>
         public SyncLazy(Func<TValue> valueFactory, bool isThreadSafe)
         {
             _valueFactory = valueFactory;
@@ -60,11 +52,9 @@ namespace Agero.Core.Lazy
             _lazy = new Lazy<TValue>(valueFactory, isThreadSafe);
         }
 
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="valueFactory">Value Factory</param>
-        /// <param name="mode">Lazy Thread Safety Mode</param>
+        /// <summary>Initializes a new instance of the SyncLazy class.</summary>
+        /// <param name="valueFactory">The delegate that is invoked to produce the lazily initialized value when it is needed.</param>
+        /// <param name="mode">One of the enumeration values that specifies the thread safety mode.</param>
         public SyncLazy(Func<TValue> valueFactory, LazyThreadSafetyMode mode)
         {
             _valueFactory = valueFactory;
@@ -73,9 +63,8 @@ namespace Agero.Core.Lazy
             _lazy = new Lazy<TValue>(valueFactory, mode);
         }
 
-        /// <summary>
-        /// Returns value
-        /// </summary>
+        /// <summary>Gets the lazily initialized value of the current instance.</summary>
+        /// <returns>The lazily initialized value of the current instance.</returns>
         public TValue Value
         {
             get
@@ -99,14 +88,11 @@ namespace Agero.Core.Lazy
             }
         }
 
-        /// <summary>
-        /// Gets value created or not
-        /// </summary>
+        /// <summary>Gets a value that indicates whether a value has been created for this instance.</summary>
+        /// <returns>true if a value has been created for this instance; otherwise, false.</returns>
         public bool IsValueCreated => _lazy.IsValueCreated;
 
-        /// <summary>
-        /// Unset value
-        /// </summary>
+        /// <summary>Resets the lazily initialized value of the current instance</summary>
         public void ClearValue()
         {
             lock (_sync)
