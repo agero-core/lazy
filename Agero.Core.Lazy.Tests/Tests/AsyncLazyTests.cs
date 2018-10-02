@@ -61,7 +61,7 @@ namespace Agero.Core.Lazy.Tests.Tests
         }
 
         [TestMethod]
-        public void IsValueCreated_Should_Return_False_When_Value_Is_Not_Created ()
+        public void IsValueCreated_Should_Return_False_When_Value_Is_Not_Created()
         {
             // Arrange
             async Task<bool> ValueFactory() => await Task.Run(() => true);
@@ -112,6 +112,28 @@ namespace Agero.Core.Lazy.Tests.Tests
 
             // Assert
             Assert.IsFalse(result);
+        }
+        
+        [TestMethod]
+        public async Task ClearValue_Should_Reset_Value()
+        {
+            // Arrange
+            var counter = 0;
+            
+            async Task<int> ValueFactory() => await Task.Run(() => ++ counter);
+            
+            var lazy = new AsyncLazy<int>(ValueFactory);
+
+            var initialValue = await lazy.GetValueAsync();
+
+            // Act
+            lazy.ClearValue();
+
+            // Assert
+            var value = await lazy.GetValueAsync();
+            
+            Assert.AreEqual(1, initialValue);
+            Assert.AreEqual(2, value);
         }
     }
 }
