@@ -9,7 +9,7 @@
         <Company>Agero Inc.</Company>
         <Copyright>Copyright © Agero 2018</Copyright>
         <Product>Lazy</Product>
-        <Description>Helpers for lazy operations</Description>
+        <Description>Helpers for lazy initialization</Description>
         <Title>Lazy</Title>
         <PackageProjectUrl>https://github.com/agero-core/lazy</PackageProjectUrl>
         <PackageReleaseNotes></PackageReleaseNotes>

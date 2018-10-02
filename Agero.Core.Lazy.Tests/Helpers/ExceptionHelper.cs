@@ -7,8 +7,7 @@ namespace Agero.Core.Lazy.Tests.Helpers
 {
     internal static class ExceptionHelper
     {
-        public static async Task<TValue> RunUntilSuccessfullAsync<TValue, TException>(Func<Task<TValue>> action,
-            int maxRetryCount)
+        public static async Task<TValue> RunUntilSuccessfullAsync<TValue, TException>(Func<Task<TValue>> action, int maxRetryCount)
             where TException : Exception
         {
             Check.ArgumentIsNull(action, "action");
@@ -28,7 +27,7 @@ namespace Agero.Core.Lazy.Tests.Helpers
                 }
             }
 
-            throw new AssertFailedException($"Max number of retries '{maxRetryCount}' reached.");
+            throw new AssertFailedException($"Max number of retries '{maxRetryCount.ToString()}' reached.");
         }
 
         public static async Task SuppressAsync<TException>(Func<Task> action)
