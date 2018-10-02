@@ -110,7 +110,7 @@ namespace Agero.Core.Lazy
 
         /// <summary>Creates and returns a string representation of the <see cref="SyncLazy{T}.Value"></see> property for this instance.</summary>
         /// <returns>The result of calling the <see cref="Object.ToString"></see> method on the <see cref="SyncLazy{T}.Value"></see> property for this instance, if the value has been created (that is, if the <see cref="SyncLazy{T}.IsValueCreated"></see> property returns true). Otherwise, a string indicating that the value has not been created.</returns>
-        /// <exception cref="T:System.NullReferenceException">The <see cref="SyncLazy{T}.Value"></see> property is null.</exception>
+        /// <exception cref="NullReferenceException">The <see cref="SyncLazy{T}.Value"></see> property is null.</exception>
         public override string ToString()
         {
             return _lazy.ToString();
