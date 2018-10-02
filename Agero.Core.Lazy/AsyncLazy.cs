@@ -5,8 +5,7 @@ using Agero.Core.Lazy.Extensions;
 
 namespace Agero.Core.Lazy
 {
-    /// <summary>Provides support for lazy initialization.</summary>
-    /// <remarks>Limited async implementation of Lazy{TValue} with task re-initialization.</remarks>
+    /// <summary>Limited async implementation of <see cref="Lazy{T}"/> with task re-initialization when task is not succefully completed.</summary>
     /// <typeparam name="T">The type of object that is being lazily initialized.</typeparam>
     public class AsyncLazy<T>
     {

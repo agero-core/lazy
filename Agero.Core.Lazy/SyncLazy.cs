@@ -3,8 +3,7 @@ using System.Threading;
 
 namespace Agero.Core.Lazy
 {
-    /// <summary>Provides support for lazy initialization.</summary>
-    /// <remarks><see cref="Lazy{T}"/> wrapper which re-initializes on exceptions.</remarks>
+    /// <summary>see cref="Lazy{T}"/> wrapper which re-creates lazily initiated value when lazy initialization throws exception.</summary>
     /// <typeparam name="T">The type of object that is being lazily initialized.</typeparam>
     public class SyncLazy<T>
     {
